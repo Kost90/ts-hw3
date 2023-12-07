@@ -26,9 +26,10 @@ type Visits ={
 	present:boolean,
 }
 
+type BadgeType = `${BadgeSizeType}_${PrintType}`;
 
 class Student {
-	badgeTypeMap = new Map<`${BadgeSizeType}_${PrintType}`,  BadgeTypesEnum>([
+	badgeTypeMap = new Map<BadgeType,  BadgeTypesEnum>([
 		['single_fast', BadgeTypesEnum.COLOR],
 		['single_standart', BadgeTypesEnum.COLOR],
 		['double_fast', BadgeTypesEnum.MONO],
@@ -59,15 +60,15 @@ class Student {
 		this._birthYear = birthYear;
 	}
 
-	setGrade(grade: Grade) {
+	setGrade(grade: Grade):void {
 		this._grades.push(grade);
 	}
 
-	setVisit(visit: Visits) {
+	setVisit(visit: Visits):void {
 		this._visits.push(visit);
 	}
 
-	getPerformanceRating() {
+	getPerformanceRating():number {
 		const gradeValues = Object.values(this._grades);
 
 		if (!gradeValues.length) return 0;
